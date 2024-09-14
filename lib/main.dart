@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'isolated_page.dart';
+import 'hive/initialize_hive.dart';
+import 'initial.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await InitializeHive.init();
   runApp(const MyApp());
 }
 
@@ -12,43 +15,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter Isolate Counting'),
-          bottom: const TabBar(
-            tabs: [
-              Tab(text: 'Tab 1'),
-              Tab(text: 'Tab 2'),
-              Tab(text: 'Tab 3'),
-            ],
-          ),
-        ),
-        body: const TabBarView(
-          children: [
-            CountTab(
-              tabIndex: 1,
-            ),
-            CountTab(
-              tabIndex: 2,
-            ),
-            CountTab(
-              tabIndex: 3,
-            ),
-          ],
-        ),
-      ),
+      debugShowCheckedModeBanner: false,
+      home: InitialPage(),
     );
   }
 }
