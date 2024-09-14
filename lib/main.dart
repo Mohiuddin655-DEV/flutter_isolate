@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'hive/initialize_hive.dart';
-import 'initial.dart';
+import 'uploader/initial.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
